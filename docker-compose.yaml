@@ -1,0 +1,14 @@
+version: "3.10"
+
+services:
+  backend:
+    build: backend_fastapi
+    ports:
+      - 8000:8000
+
+  frontend:
+    build: frontend_streamlit
+    ports:
+      - 8501:8501
+    depends_on:
+      - backend

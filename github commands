@@ -1,0 +1,19 @@
+### BELOW GITHUB COMMANDS PUSHES THE EXISTING LOCAL REPOSITORY TO GITHUB REPOSITORY ###
+
+Pre-Requisite: Create the GitHub repository and copy the GitHub URL
+
+git add .
+git commit -m "<whatever commit message>"
+git remote add origin <GitHub URL>
+git push -u -f origin <BRANCH NAME, most probably "master">
+
+In case it shows any error, add the username using below:
+git config --login user.name <GitHub User Name>
+
+It will ask for authentication and it will be pushed
+
+### PUSH THE CHANGES MADE LOCALLY ###
+git push origin <BRANCH NAME ON WHICH CODE REPO EXISTS>
+
+If code is changed from somewhere else, then add the remote origin in local github repository first
+git remote add origin <GitHub URL>

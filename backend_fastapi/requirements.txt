@@ -1,0 +1,5 @@
+fastapi==0.95.2
+uvicorn==0.22.0
+pandas==1.5.3
+category-encoders==2.6.0
+pycaret==3.0.0
