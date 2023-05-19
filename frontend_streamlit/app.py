@@ -6,6 +6,11 @@ from parameter_options import Options
 import uuid
 import requests
 import json
+import configparser
+
+# Read the configuration file
+config = configparser.ConfigParser()
+config.read('config.ini')
 
 
 class InvalidUserCreationDate(Exception):
@@ -122,8 +127,8 @@ with user_id_column:
 
 st.write(":red[User Profile and Account-Related Fields:]")
 user_profile_and_account_related_fields_column_1, \
-    user_profile_and_account_related_fields_column_2, \
-    user_profile_and_account_related_fields_column_3 = st.columns(3)
+user_profile_and_account_related_fields_column_2, \
+user_profile_and_account_related_fields_column_3 = st.columns(3)
 with user_profile_and_account_related_fields_column_1:
     has_email_option = st.selectbox('Has Email', options.get_options(option="Has Email"))
     has_email = 1 if has_email_option == 'YES' else 0
@@ -150,8 +155,8 @@ with user_profile_and_account_related_fields_column_3:
 
 st.write(":red[Transaction Details and Merchant-Related Fields:]")
 transaction_details_and_merchant_related_fields_column_1, \
-    transaction_details_and_merchant_related_fields_column_2, \
-    transaction_details_and_merchant_related_fields_column_3 = st.columns(3)
+transaction_details_and_merchant_related_fields_column_2, \
+transaction_details_and_merchant_related_fields_column_3 = st.columns(3)
 with transaction_details_and_merchant_related_fields_column_1:
     currency = st.selectbox("Currency", options.get_options(option="Currency"),
                             index=options.get_options(option="Currency").index("GBP"))
@@ -208,7 +213,10 @@ if detect_fraud_button:
     parameter_values = dataframe.to_dict(orient='records')[0]
 
     try:
-        response = requests.post(url="http://backend:8000/detect",
+        # Retrieve the backend URL and port from the configuration file
+        backend_url = config.get('Backend', 'url')
+        backend_port = config.getint('Backend', 'port')
+        response = requests.post(url=f"{backend_url}:{backend_port}/detect",
                                  data=json.dumps(parameter_values))
 
         st.write(f"Response: {response.text}")
