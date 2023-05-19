@@ -1,0 +1,23 @@
+### PUSH THE DOCKER ###
+After the docker image is built on local, a new repo on docker hub has to be created
+Before pushing to the created dockerhub repository, it im IMPORTANT to tag it.
+
+Step 1:
+    Login Command: docker login -user <username>
+    example: docker login -user shubh2014shivdocker
+    <Supply the password>
+
+Step 2:
+    Tag the Docker Image: docker tag <image name> <dockerhub repo name>/<image name>:latest
+
+Step 3:
+    Push the Image: docker push <dockerhub repo name>/<image name>:latest
+
+
+Remember:
+    DockerHub is synonymous with Elastic Container Registry (ECR) on AWS
+    Docker image has to be fist pushed in ECR on aws
+    then, it has to be run one of the EC2 instances by pulling from the ECR.
+
+    Along with use of Elastic Container Service (ECS) and Task Definition, a service could be created
+    which could be used to deploy the docker container on AWS.
