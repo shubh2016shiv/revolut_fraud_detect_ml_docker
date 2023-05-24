@@ -17,3 +17,8 @@ git push origin <BRANCH NAME ON WHICH CODE REPO EXISTS>
 
 If code is changed from somewhere else, then add the remote origin in local github repository first
 git remote add origin <GitHub URL>
+
+### FETCH AND PULL ###
+# Following commands takes the latest code changes from the github repo
+git fetch origin   # Remember, the origin (git url has to be added fom line 7)
+git pull
