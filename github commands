@@ -22,3 +22,11 @@ git remote add origin <GitHub URL>
 # Following commands takes the latest code changes from the github repo
 git fetch origin   # Remember, the origin (git url has to be added fom line 7)
 git pull
+
+### REVERTING CODE TO PREVIOUS COMMIT ###
+## REFERENCE: https://medium.com/swlh/using-git-how-to-go-back-to-a-previous-commit-8579ccc8180f
+git log --oneline ## To get the commit IDs where we want to go back
+git checkout <commit-id> .  ## DO NOT FORGET '.' AT THE END ## Go back using the git checkout, just like switching to the branch
+$ git add .
+$ git commit -m "Reverting to <commit-id>"
+$ git push
