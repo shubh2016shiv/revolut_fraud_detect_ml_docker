@@ -30,3 +30,9 @@ git checkout <commit-id> .  ## DO NOT FORGET '.' AT THE END ## Go back using the
 $ git add .
 $ git commit -m "Reverting to <commit-id>"
 $ git push
+
+### GET THE NAME OF THE FILES COMMITED PREVIOUSLY ###
+git show --name-only --oneline <commit_hash>
+
+### UNCOMMIT FILE IN PREVIOUS COMMIT ###
+git reset HEAD^ <file_path>
