@@ -36,3 +36,6 @@ git show --name-only --oneline <commit_hash>
 
 ### UNCOMMIT FILE IN PREVIOUS COMMIT ###
 git reset HEAD^ <file_path>
+
+### REVERT CHANGES IN SPECIFIC FILE ###
+git checkout <commit-hash> -- <file-path>
