@@ -39,3 +39,13 @@ git reset HEAD^ <file_path>
 
 ### REVERT CHANGES IN SPECIFIC FILE ###
 git checkout <commit-hash> -- <file-path>
+
+### CREATE A NEW BRANCH AND PUSH DIFFERENT CODE IN NEW BRANCH WITHOUT EXTENDING THE MASTER ###
+git init
+git remote add origin <REMOTE REPO NAME>
+git config --global user.name "<USERNAME>"
+git config --global user.email "<EMAIL>"
+git checkout -b <NEW BRANCH NAME>
+git add .
+git commit -m "<COMMIT MESSAGE>"
+git push origin <NEW BRANCH NAME>
