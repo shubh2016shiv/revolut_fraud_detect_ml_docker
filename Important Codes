@@ -1,0 +1,42 @@
+########## TIMING EACH FUNCTION IN LAMBDA ##########
+
+1. Define the timing decorator:
+
+```python
+import time
+
+def timing_decorator(func):
+    def wrapper(*args, **kwargs):
+        start_time = time.time()
+        result = func(*args, **kwargs)
+        end_time = time.time()
+        elapsed_time = end_time - start_time
+        print(f"Function {func.__name__} started at {start_time}, ended at {end_time}, and took {elapsed_time:.2f} seconds to complete.")
+        return result
+    return wrapper
+```
+
+2. Use the decorator for the functions you want to measure:
+
+```python
+@timing_decorator
+def example_function():
+    # Some code here
+    time.sleep(2)  # Just for demonstration purposes
+
+@timing_decorator
+def another_example_function():
+    # Some code here
+    time.sleep(1)  # Just for demonstration purposes
+```
+
+3. Call the functions:
+
+```python
+example_function()
+another_example_function()
+```
+
+When you call the decorated functions, you'll get print statements indicating the start and end times, and the elapsed time for each function.
+
+In a Lambda environment, instead of `print`, you might want to use `LOGGER.info()` or another logging method to send the timings to CloudWatch Logs or your preferred logging mechanism. Adjust the `print` statement in the `timing_decorator` accordingly.
