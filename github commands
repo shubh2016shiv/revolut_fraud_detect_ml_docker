@@ -49,3 +49,6 @@ git checkout -b <NEW BRANCH NAME>
 git add .
 git commit -m "<COMMIT MESSAGE>"
 git push origin <NEW BRANCH NAME>
+
+### SHOW ORIGIN ###
+git remote show origin
