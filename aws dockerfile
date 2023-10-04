@@ -1,0 +1,26 @@
+# Use an official Python runtime as the base image
+FROM python:3.9
+
+# Set environment variables (NOT RECOMMENDED FOR SENSITIVE DATA!)
+# You may want to use another secure method to manage your secrets
+ENV AWS_ACCESS_KEY_ID=""
+ENV AWS_SECRET_ACCESS_KEY=""
+ENV AWS_DEFAULT_REGION=eu-west-2
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Copy the current directory contents into the container at /app
+COPY . /app
+
+# Install the dependencies
+COPY requirements.txt ./
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Make port 80 available to the world outside this container (Optional, only if your app serves on port 80)
+EXPOSE 80
+
+# Define default command to run the app. Modify as needed.
+# For example, if your main file is `main.py` you might use:
+# CMD ["python", "./main.py"]
+CMD ["python", "./app.py"]
