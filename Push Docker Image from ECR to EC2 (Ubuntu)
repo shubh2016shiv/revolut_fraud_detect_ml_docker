@@ -1,0 +1,77 @@
+Pushing a Docker image from Amazon Elastic Container Registry (ECR) directly to an Amazon EC2 instance isn't the usual workflow. Instead, you'll typically do the following:
+
+    Push your Docker image to ECR from your local machine or CI/CD pipeline.
+    Pull the Docker image from ECR to your EC2 instance where it's needed.
+
+Here's a step-by-step guide to help you achieve this:
+1. Push Docker Image to ECR
+
+You likely already have this done, but for completeness:
+
+    Authenticate Docker to the ECR registry:
+
+    bash
+
+aws ecr get-login-password --region <region> | docker login --username AWS --password-stdin <account-id>.dkr.ecr.<region>.amazonaws.com
+
+Tag your image:
+
+bash
+
+docker tag <your-image-name>:<tag> <account-id>.dkr.ecr.<region>.amazonaws.com/<your-repo-name>:<tag>
+
+Push the image:
+
+bash
+
+    docker push <account-id>.dkr.ecr.<region>.amazonaws.com/<your-repo-name>:<tag>
+
+2. Pull Docker Image from ECR to EC2
+
+On your EC2 instance:
+
+    Install Docker on the EC2 instance if it isn't already:
+    For Amazon Linux 2:
+
+    bash
+
+sudo yum update -y
+sudo amazon-linux-extras install docker
+sudo service docker start
+sudo usermod -a -G docker ec2-user
+
+For Ubuntu:
+
+bash
+
+sudo apt-get update
+sudo apt-get install -y docker.io
+sudo systemctl start docker
+sudo systemctl enable docker
+sudo usermod -a -G docker ubuntu
+
+Install the AWS CLI on your EC2 instance, if it isn't already.
+
+Authenticate Docker to the ECR registry:
+
+bash
+
+aws ecr get-login-password --region <region> | docker login --username AWS --password-stdin <account-id>.dkr.ecr.<region>.amazonaws.com
+
+Pull the image:
+
+bash
+
+docker pull <account-id>.dkr.ecr.<region>.amazonaws.com/<your-repo-name>:<tag>
+
+Now you can run your Docker container on the EC2 instance:
+
+bash
+
+    docker run <options> <account-id>.dkr.ecr.<region>.amazonaws.com/<your-repo-name>:<tag>
+
+Notes:
+
+    Replace <region>, <account-id>, <your-image-name>, <your-repo-name>, and <tag> with appropriate values.
+    Ensure that the EC2 instance's IAM role has permissions to access ECR or that you've provided credentials with necessary permissions.
+    Ensure the security group for your EC2 instance allows necessary traffic (e.g., if your Docker container runs a web server on port 80, ensure port 80 is open).
