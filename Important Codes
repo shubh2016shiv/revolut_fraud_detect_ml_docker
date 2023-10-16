@@ -40,3 +40,8 @@ another_example_function()
 When you call the decorated functions, you'll get print statements indicating the start and end times, and the elapsed time for each function.
 
 In a Lambda environment, instead of `print`, you might want to use `LOGGER.info()` or another logging method to send the timings to CloudWatch Logs or your preferred logging mechanism. Adjust the `print` statement in the `timing_decorator` accordingly.
+
+
+
+######### Command to test the connection to  AWS from local computer #########  
+aws sts get-caller-identity
