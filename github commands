@@ -52,3 +52,15 @@ git push origin <NEW BRANCH NAME>
 
 ### SHOW ORIGIN ###
 git remote show origin
+
+###  TO PUSH LOCAL "master" BRANCH TO A REMOTE REPOSITORY ### 
+git push --set-upstream origin master
+
+    git push: This is the standard Git command for pushing local changes to a remote repository.
+
+    --set-upstream (or -u for short): This option is used to set up a tracking relationship between your local branch and a remote branch. It tells Git that your local branch should track the remote branch for future pushes and pulls.
+
+    origin: This is the name of the remote repository. "Origin" is a commonly used name for the default remote repository, but it could be different if you have multiple remotes configured.
+
+    master: This is the name of the local branch you want to push to the remote repository.
+
